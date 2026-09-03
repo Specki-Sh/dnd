@@ -7,6 +7,8 @@
     "S - Callouts",
     "S - Dataview Cards",
     "character-sheet",
+    "roll20-sheet",
     "dnd-theme"
-  ]
+  ],
+  "cssTheme": ""
 }

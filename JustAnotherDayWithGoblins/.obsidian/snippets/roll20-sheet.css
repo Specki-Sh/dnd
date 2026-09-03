@@ -1,0 +1,294 @@
+/* ==========================================================================
+   Roll20 D&D 5e Authentic Character Sheet Styling for Obsidian
+   Exact 3-Column Layout, Attribute Bubbles, Saves, Skills, Combat & Traits
+   ========================================================================== */
+
+.roll20-sheet {
+  background: var(--background-primary);
+  border: 2px solid #58180d;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 1050px;
+  margin: 0 auto 30px auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  font-family: var(--font-text, sans-serif);
+}
+
+/* TOP HEADER */
+.roll20-header {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  border-bottom: 2px solid #58180d;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 800px) {
+  .roll20-header {
+    grid-template-columns: 1fr;
+  }
+}
+
+.char-name-box {
+  border: 2px solid #58180d;
+  border-radius: 6px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(88, 24, 13, 0.04);
+}
+
+.char-name {
+  font-size: 1.8em;
+  font-weight: 900;
+  color: #58180d;
+  text-transform: uppercase;
+  line-height: 1.1;
+  font-family: var(--font-header, serif);
+}
+
+.char-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .char-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.info-cell {
+  border: 1px solid #c9ad6a;
+  border-radius: 4px;
+  padding: 4px 8px;
+  background: var(--background-secondary);
+  display: flex;
+  flex-direction: column;
+}
+
+.info-val {
+  font-size: 0.95em;
+  font-weight: 700;
+  color: var(--text-normal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-lbl, .box-lbl {
+  font-size: 0.65em;
+  font-weight: 800;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* 3-COLUMN MAIN LAYOUT */
+.roll20-body {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .roll20-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roll20-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* COLUMN 1: ABILITIES + SAVES & SKILLS */
+.stats-and-skills {
+  display: flex;
+  gap: 12px;
+}
+
+.ability-scores-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 78px;
+  flex-shrink: 0;
+}
+
+.roll20-stat-box {
+  background: var(--background-secondary);
+  border: 1.5px solid #58180d;
+  border-radius: 8px;
+  text-align: center;
+  padding: 6px 2px;
+  position: relative;
+}
+
+.stat-name {
+  font-size: 0.68em;
+  font-weight: 900;
+  color: #58180d;
+  text-transform: uppercase;
+}
+
+.stat-mod {
+  font-size: 1.6em;
+  font-weight: 900;
+  color: var(--text-normal);
+  line-height: 1.1;
+  margin: 2px 0;
+}
+
+.stat-base {
+  display: inline-block;
+  background: var(--background-primary);
+  border: 1px solid #58180d;
+  border-radius: 12px;
+  padding: 0 8px;
+  font-size: 0.75em;
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+.saves-skills-col {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.prof-banner {
+  border: 1px solid #c9ad6a;
+  border-radius: 4px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--background-secondary);
+}
+
+.roll20-panel {
+  border: 1.5px solid #c9ad6a;
+  border-radius: 6px;
+  padding: 8px 10px;
+  background: var(--background-secondary);
+}
+
+.panel-title {
+  font-size: 0.75em;
+  font-weight: 900;
+  color: #58180d;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid rgba(88, 24, 13, 0.2);
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: 0.05em;
+}
+
+.skill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82em;
+  padding: 2px 0;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.08);
+}
+
+.skill-row .prof-dot {
+  color: #58180d;
+  font-weight: 900;
+  margin-right: 4px;
+}
+
+.skill-row .mod-val {
+  font-weight: 800;
+  color: var(--text-normal);
+}
+
+/* COLUMN 2: COMBAT, HP, ATTACKS */
+.combat-top-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.combat-badge {
+  border: 2px solid #58180d;
+  border-radius: 6px;
+  padding: 6px 4px;
+  background: rgba(88, 24, 13, 0.05);
+}
+
+.badge-val {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: #58180d;
+  line-height: 1.1;
+}
+
+.hp-panel {
+  border: 2px solid #58180d;
+  border-radius: 6px;
+  padding: 8px;
+  text-align: center;
+  background: var(--background-secondary);
+}
+
+.hp-main {
+  font-size: 2.2em;
+  font-weight: 900;
+  color: #58180d;
+  line-height: 1;
+  margin: 4px 0;
+}
+
+.hitdice-death-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 8px;
+}
+
+.roll20-attacks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+  margin-top: 6px;
+}
+
+.roll20-attacks-table th {
+  background: rgba(88, 24, 13, 0.12);
+  color: #58180d;
+  font-size: 0.75em;
+  padding: 4px;
+  text-transform: uppercase;
+}
+
+.roll20-attacks-table td {
+  padding: 5px 4px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* COLUMN 3: PERSONALITY & TRAITS */
+.traits-list {
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+.trait-item {
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.trait-item b {
+  color: #58180d;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  display: block;
+}
