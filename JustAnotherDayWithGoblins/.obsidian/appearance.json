@@ -1,8 +1,11 @@
 {
   "accentColor": "#9c2b1b",
   "baseFontSize": 16,
+  "theme": "ITS Theme",
   "enabledCssSnippets": [
+    "Theme - D&D WOTC",
+    "S - Callouts",
+    "S - Dataview Cards",
     "dnd-theme"
-  ],
-  "theme": "obsidian"
+  ]
 }

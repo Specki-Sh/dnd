@@ -1,0 +1,7 @@
+{
+  "parseForCreatures": true,
+  "defaultLayout": "Basic 5e Layout",
+  "useDice": true,
+  "renderDice": true,
+  "alwaysRenderDice": true
+}
