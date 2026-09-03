@@ -1,0 +1,100 @@
+/* ==========================================================
+   A4 Black & White Print-Ready Styles for Obsidian
+   Чистые стили для домашней печати и экспорта в PDF (A4)
+   ========================================================== */
+
+/* Разрыв страницы при печати */
+.page-break {
+  page-break-after: always;
+  break-after: page;
+}
+
+/* Блок А4 листа на экране */
+.a4-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5em;
+  background: var(--background-primary);
+}
+
+/* Оптимизация для печати и PDF (Cmd + P) */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 12mm 12mm 12mm;
+  }
+
+  body, .markdown-rendered, .a4-page {
+    background: white !important;
+    color: black !important;
+    font-size: 10pt !important;
+    line-height: 1.3 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Четкие черные рамки таблиц для экономии чернил */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border: 1.5px solid #000 !important;
+    margin: 0.6em 0 !important;
+  }
+
+  th {
+    background: #eee !important;
+    color: #000 !important;
+    border: 1px solid #000 !important;
+    padding: 4px 6px !important;
+    font-weight: bold !important;
+    font-size: 9pt !important;
+  }
+
+  td {
+    border: 1px solid #000 !important;
+    padding: 4px 6px !important;
+    color: #000 !important;
+    font-size: 9pt !important;
+  }
+
+  /* Скрытие интерфейса и лишних элементов при печати */
+  .mod-header, .nav-header, .sidebar, .canvas-controls {
+    display: none !important;
+  }
+
+  /* Четкие заголовки */
+  h1, h2, h3, h4 {
+    color: #000 !important;
+    page-break-after: avoid;
+    margin-top: 0.6em !important;
+    margin-bottom: 0.3em !important;
+  }
+
+  h1 { font-size: 16pt !important; border-bottom: 2px solid #000 !important; padding-bottom: 2px !important; }
+  h2 { font-size: 13pt !important; border-bottom: 1px solid #000 !important; padding-bottom: 2px !important; }
+  h3 { font-size: 11pt !important; }
+
+  /* Картинки и карты во всю ширину страницы без обрезки */
+  img {
+    max-width: 100% !important;
+    filter: grayscale(100%) contrast(120%) !important;
+    page-break-inside: avoid;
+  }
+
+  /* Callout блоки в Ч/Б виде */
+  .callout {
+    background: #fafafa !important;
+    border: 1.5px solid #000 !important;
+    color: #000 !important;
+    margin: 0.6em 0 !important;
+    padding: 6px 10px !important;
+    page-break-inside: avoid;
+  }
+
+  .callout-title {
+    color: #000 !important;
+    font-weight: bold !important;
+  }
+}

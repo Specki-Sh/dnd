@@ -5,10 +5,7 @@
   "enabledCssSnippets": [
     "Theme - D&D WOTC",
     "S - Callouts",
-    "S - Dataview Cards",
-    "character-sheet",
-    "roll20-sheet",
+    "print-a4",
     "dnd-theme"
-  ],
-  "cssTheme": ""
+  ]
 }
