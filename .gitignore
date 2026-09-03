@@ -1,0 +1,20 @@
+# OS metadata
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Obsidian volatile workspace caches (keep plugin & core configurations)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+**/.obsidian/workspace.json
+**/.obsidian/workspace-mobile.json
+**/.obsidian/cache/
+
+# Temporary / Scratch
+*.tmp
+*.log
