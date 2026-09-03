@@ -1,0 +1,103 @@
+/* ==========================================================
+   D&D 5e Theme Snippet for Obsidian
+   Parchment styling, statblock tweaks, custom callouts & tables
+   ========================================================== */
+
+:root {
+  --dnd-primary-red: #58180d;
+  --dnd-secondary-red: #7a2012;
+  --dnd-parchment-gold: #c9ad6a;
+  --dnd-border-gold: #9c2b1b;
+  --dnd-bg-parchment: #fdf6e9;
+  --dnd-bg-dark: #1e1b18;
+}
+
+/* Callout Styling: Read-aloud (Текст для игроков) */
+.callout[data-callout="read-aloud"] {
+  --callout-color: 201, 173, 106;
+  background-color: rgba(201, 173, 106, 0.12);
+  border-left: 4px solid #c9ad6a;
+  font-style: italic;
+  padding: 0.9em 1.2em;
+}
+
+.callout[data-callout="read-aloud"] .callout-title {
+  font-style: normal;
+  font-weight: bold;
+  color: #c9ad6a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85em;
+}
+
+/* Callout Styling: DM Note (Заметки Мастера) */
+.callout[data-callout="dm-note"] {
+  --callout-color: 88, 24, 13;
+  background-color: rgba(88, 24, 13, 0.08);
+  border-left: 4px solid #7a2012;
+}
+
+.callout[data-callout="dm-note"] .callout-title {
+  font-weight: bold;
+  color: #7a2012;
+}
+
+/* Callout Styling: Loot / Treasure (Добыча и сокровища) */
+.callout[data-callout="loot"] {
+  --callout-color: 218, 165, 32;
+  background-color: rgba(218, 165, 32, 0.1);
+  border-left: 4px solid #daa520;
+}
+
+/* Callout Styling: Check (Проверка навыка / DC) */
+.callout[data-callout="check"] {
+  --callout-color: 46, 139, 87;
+  background-color: rgba(46, 139, 87, 0.09);
+  border-left: 4px solid #2e8b57;
+}
+
+/* Callout Styling: Danger / Disease (Опасность и болезни) */
+.callout[data-callout="danger"] {
+  --callout-color: 178, 34, 34;
+  background-color: rgba(178, 34, 34, 0.12);
+  border-left: 4px solid #b22222;
+}
+
+/* Fantasy Statblocks enhancements */
+.statblock-1, .statblock-2 {
+  font-family: var(--font-text);
+  border: 2px solid #58180d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+/* Tables styling */
+table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+
+th {
+  background-color: rgba(88, 24, 13, 0.15);
+  border-bottom: 2px solid #58180d;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+td {
+  padding: 6px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dice roller interactive elements */
+.dice-roller {
+  cursor: pointer;
+  color: #c9ad6a;
+  font-weight: 600;
+  text-decoration: underline dotted;
+}
+
+.dice-roller:hover {
+  color: #e0be77;
+}

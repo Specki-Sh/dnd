@@ -1,0 +1,8 @@
+{
+  "accentColor": "#9c2b1b",
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "dnd-theme"
+  ],
+  "theme": "obsidian"
+}
