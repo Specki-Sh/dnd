@@ -19,3 +19,4 @@ Thumbs.db
 *.tmp
 *.log
 .plugin-repo/
+.releases-fork/
