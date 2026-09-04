@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Раздатка: Опись склянок и журнал опытов</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 7mm 7mm 7mm 7mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #111111;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PT Sans", Helvetica, Arial, sans-serif;
+    font-size: 8pt;
+    line-height: 1.25;
+  }
+  .handout-sheet {
+    width: 100%;
+    height: 100%;
+    max-height: 283mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid #111111;
+    padding: 6px;
+  }
+  .inner-border {
+    border: 0.75px solid #333333;
+    padding: 8px 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Header */
+  .handout-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #222222;
+    padding: 3px 0 6px 0;
+    margin-bottom: 6px;
+  }
+  .title-box h1 {
+    font-family: "Cinzel", "PT Serif Caption", "Playfair Display", Georgia, serif;
+    font-size: 13.5pt;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.1;
+    color: #111111;
+  }
+  .title-box .sub-title {
+    font-size: 7.2pt;
+    font-style: italic;
+    color: #444444;
+    margin-top: 1px;
+  }
+  .prop-badge {
+    border: 1px solid #222222;
+    background: #f5f5f5;
+    font-size: 6.8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-family: "Cinzel", "PT Serif Caption", Georgia, serif;
+    font-size: 8.2pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: #222222;
+    color: #ffffff;
+    padding: 3px 7px;
+    border-radius: 2px;
+    margin: 0 0 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section-title span.sub {
+    font-size: 6.8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #eeeeee;
+  }
+
+  /* Table styling */
+  table.handout-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7pt;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  table.handout-table th {
+    background: #eaeaea;
+    color: #000000;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 6.5pt;
+    padding: 2.5px 4px;
+    border: 0.75px solid #222222;
+    text-align: left;
+  }
+  table.handout-table td {
+    padding: 2px 4px;
+    border: 0.5px solid #888888;
+    vertical-align: middle;
+  }
+  table.handout-table tr:nth-child(even) td {
+    background: #f8f8f8;
+  }
+  table.handout-table th.center, table.handout-table td.center {
+    text-align: center;
+  }
+
+  .flask-badge {
+    font-family: "Cinzel", Georgia, serif;
+    font-weight: 900;
+    font-size: 8.5pt;
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+    background: #f0f0f0;
+    border: 0.75px solid #222222;
+    border-radius: 2px;
+    padding: 1px 0;
+    box-sizing: border-box;
+  }
+  .flask-badge.secret {
+    background: #ffffff;
+    border: 1.2px dashed #000000;
+    font-weight: 900;
+  }
+
+  .pencil-write {
+    display: block;
+    width: 100%;
+    border-bottom: 0.8px dotted #555555;
+    height: 12px;
+    margin-bottom: 2px;
+  }
+  .pencil-write-double {
+    display: block;
+    width: 100%;
+    border-bottom: 0.8px dotted #555555;
+    height: 11px;
+  }
+  .box-check {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border: 0.85px solid #000000;
+    border-radius: 1px;
+    vertical-align: middle;
+    background: #ffffff;
+    margin-right: 2px;
+  }
+
+  /* Footer */
+  .handout-footer {
+    border-top: 1px solid #222222;
+    padding-top: 3px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.8pt;
+    color: #444444;
+  }
+</style>
+</head>
+<body>
+
+<div class="handout-sheet">
+  <div class="inner-border">
+    
+    <!-- Header -->
+    <div class="handout-hdr">
+      <div class="title-box">
+        <h1>Опись склянок и журнал опытов</h1>
+        <div class="sub-title">Раздаточный материал игрокам • Осмотр трофейной повозки на Пятаке</div>
+      </div>
+      <div class="prop-badge">D&D 5e • «Обычный день с гоблинами» • Раздатка А</div>
+    </div>
+
+    <!-- Section 1: Inventory of Vials -->
+    <div class="section-title">
+      <span>[ 01 ] Опись найденных сосудов (№ 0 — 9)</span>
+      <span class="sub">ПИШИТЕ КАРАНДАШОМ</span>
+    </div>
+
+    <table class="handout-table">
+      <thead>
+        <tr>
+          <th style="width:32px;" class="center">№</th>
+          <th style="width:130px;">Тара и вид сосуда</th>
+          <th>Внешний вид и запах содержимого</th>
+          <th style="width:165px;">Наши догадки и назначение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center"><span class="flask-badge">0</span></td>
+          <td><strong>Большая бутыль</strong> (толстое стекло)</td>
+          <td>Абсолютно прозрачная жидкость, чистая вода без запаха и вкуса</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">1</span></td>
+          <td><strong>Глиняная колба</strong> (обожженная)</td>
+          <td>Густое масло цвета соломы, отчетливый запах льняного семени</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">2</span></td>
+          <td><strong>Пробирка</strong> в кожаном чехле</td>
+          <td>Густая черная смола, тошнотворный трупный запах гнили</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">3</span></td>
+          <td><strong>Маленькая бутылочка</strong></td>
+          <td>Зелено-бурая эссенция, запах сырых лесных грибов и мха</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">4</span></td>
+          <td><strong>Стеклянная баночка</strong></td>
+          <td>Светящаяся ярко-рыжая пыльца, липнет к сухим пальцам</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">5</span></td>
+          <td><strong>Изящный флакон</strong> с гранями</td>
+          <td>Рубиновая жидкость, манящий запах вишневой наливки и какао</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">6</span></td>
+          <td><strong>Большой флакон</strong></td>
+          <td>Мутная жидкость с плотным белым осадком на дне сосуда</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">7</span></td>
+          <td><strong>Пузырек</strong> с притертой пробкой</td>
+          <td>Маслянистый раствор с кружащимися серебряными искрами</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge">8</span></td>
+          <td><strong>Стеклянная колба</strong></td>
+          <td>Пульсирующая нежно-розовая субстанция, легкое тепло</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="flask-badge secret">9</span></td>
+          <td><strong>Хрустальный флакон</strong> <em>(тайник!)</em></td>
+          <td>Радужная эссенция, ослепительно переливается всеми цветами!</td>
+          <td><span class="pencil-write"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 2: Experiment Log -->
+    <div class="section-title">
+      <span>[ 02 ] Полевой журнал экспериментов гоблинов</span>
+      <span class="sub">ВАРКА = 1 ОЧКО ВРЕМЕНИ • ДЕГУСТАЦИЯ ОБЯЗАТЕЛЬНА!</span>
+    </div>
+
+    <table class="handout-table" style="margin-bottom:2px;">
+      <thead>
+        <tr>
+          <th style="width:30px;" class="center">Опыт</th>
+          <th style="width:78px;" class="center">Смешали №</th>
+          <th style="width:110px;">Кто выпил / подопытный?</th>
+          <th>Что произошло / наблюдаемый эффект</th>
+          <th style="width:115px;">Результат / Имя зелья</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>1</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>2</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>3</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>4</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>5</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>6</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>7</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+        <tr>
+          <td class="center"><span class="box-check"></span> <strong>8</strong></td>
+          <td class="center" style="font-size:7.5pt;"><strong>[ &nbsp;&nbsp;&nbsp; ] + [ &nbsp;&nbsp;&nbsp; ]</strong></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+          <td><span class="pencil-write-double"></span><span class="pencil-write-double"></span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Footer -->
+    <div class="handout-footer">
+      <span>Тележка алхимика (Центральный Пятак) • Каждая варка тратит 1 очко времени</span>
+      <span>Раздаточный лист для игроков • D&D 5.5e (2024) / 5e Vault Edition</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

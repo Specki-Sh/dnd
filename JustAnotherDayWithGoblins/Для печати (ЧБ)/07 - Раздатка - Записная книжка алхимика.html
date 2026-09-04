@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Раздатка: Записная книжка алхимика</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 8mm 8mm 8mm 8mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #111111;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PT Sans", Helvetica, Arial, sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.35;
+  }
+  .handout-sheet {
+    width: 100%;
+    height: 100%;
+    max-height: 281mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid #111111;
+    padding: 8px;
+    position: relative;
+  }
+  .inner-border {
+    border: 0.75px solid #333333;
+    padding: 10px 14px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Header */
+  .handout-hdr {
+    text-align: center;
+    border-bottom: 1.5px solid #111111;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+  }
+  .handout-hdr h1 {
+    font-family: "Cinzel", "PT Serif Caption", "Playfair Display", Georgia, serif;
+    font-size: 14pt;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 2px 0;
+  }
+  .handout-hdr .sub-title {
+    font-size: 7.5pt;
+    font-style: italic;
+    color: #444444;
+  }
+  .prop-badge {
+    display: inline-block;
+    border: 0.75px solid #111111;
+    background: #f5f5f5;
+    font-size: 6.5pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 1px 6px;
+    border-radius: 2px;
+    margin-top: 3px;
+  }
+
+  /* Page 42 Excerpt */
+  .excerpt-box {
+    border: 1px solid #222222;
+    background: #fafafa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .excerpt-title {
+    font-family: "Cinzel", "PT Serif Caption", Georgia, serif;
+    font-size: 8.5pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 0.75px solid #222222;
+    padding-bottom: 3px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .excerpt-text {
+    font-family: Georgia, "PT Serif", serif;
+    font-style: italic;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: #1a1a1a;
+  }
+  .excerpt-text strong {
+    font-style: normal;
+    text-decoration: underline;
+  }
+
+  /* Page 88 Formulas */
+  .section-hdr {
+    font-family: "Cinzel", "PT Serif Caption", Georgia, serif;
+    font-size: 8.8pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-bottom: 1.5px solid #111111;
+    padding-bottom: 3px;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .formulas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 10px;
+    flex: 1;
+  }
+  .formula-card {
+    border: 0.8px solid #333333;
+    border-radius: 3px;
+    padding: 5px 8px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+  .formula-idx {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    font-size: 6pt;
+    color: #888888;
+    font-family: sans-serif;
+  }
+  .formula-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px;
+    border-bottom: 0.5px solid #e0e0e0;
+    padding-bottom: 2px;
+    padding-right: 12px;
+  }
+  .formula-badge {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-variant-numeric: lining-nums;
+    font-size: 8.5pt;
+    font-weight: 800;
+    color: #000000;
+    background: #ececec;
+    border: 0.75px solid #222222;
+    padding: 1.5px 6px;
+    border-radius: 2px;
+    letter-spacing: 0.02em;
+  }
+  .formula-quote {
+    font-family: Georgia, "PT Serif", serif;
+    font-style: italic;
+    font-size: 7.6pt;
+    color: #222222;
+    text-align: right;
+    flex: 1;
+    margin-left: 6px;
+  }
+  .formula-pencil-area {
+    margin-top: 3px;
+    font-size: 7pt;
+  }
+  .pencil-lbl {
+    color: #555555;
+    font-size: 6.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    font-weight: 600;
+  }
+  .pencil-line {
+    border-bottom: 0.8px dotted #444444;
+    height: 13px;
+    margin-top: 2px;
+  }
+
+  /* Bottom hint */
+  .handout-footer {
+    border-top: 1px solid #111111;
+    padding-top: 4px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 6.5pt;
+    color: #555555;
+  }
+</style>
+</head>
+<body>
+
+<div class="handout-sheet">
+  <div class="inner-border">
+    
+    <!-- Title -->
+    <div class="handout-hdr">
+      <h1>Записная книжка алхимика</h1>
+      <div class="sub-title">Раздаточный материал игрокам • Текст на драконьем языке (перевод гоблина Скряба)</div>
+      <div class="prop-badge">D&D 5e • Модуль «Обычный день с гоблинами» • Раздатка Б</div>
+    </div>
+
+    <!-- Page 42 Excerpt -->
+    <div class="excerpt-box">
+      <div class="excerpt-title">
+        <span>📑 Страница 42: Запись об открытии</span>
+        <span style="font-size:7pt; font-weight:normal;">Личный дневник мэтра Арканиуса</span>
+      </div>
+      <div class="excerpt-text">
+        «...Я нашёл ЕГО. ОНО существует! Переливается, словно чистая радуга в хрустале.<br>
+        Тот самый состав! <strong>Универсальный катализатор!</strong> Эликсир всех эликсиров! Добавка, которая заставит работать <strong>ЛЮБОЙ</strong> раствор! Сделает любой эффект вдвое дольше, мощнее, сокрушительнее.<br>
+        Пока я не закончу полевые испытания и не рассчитаю точные пороги стабильности, ни в коем случае нельзя хранить его рядом с обычными реактивами. Спрячу флакон в <strong>потайное дно повозки под настилом</strong>...»
+      </div>
+    </div>
+
+    <!-- Page 88 Formulas Header -->
+    <div class="section-hdr">
+      <span>🧪 Страница 88: Рабочие формулы зелий (10 опытов)</span>
+      <span style="font-size:6.8pt; font-weight:normal; text-transform:none;">Заполняйте установленные эффекты карандашом</span>
+    </div>
+
+    <!-- Formulas 2x5 Grid -->
+    <div class="formulas-grid">
+      
+      <!-- 1: 4 + 7 -->
+      <div class="formula-card">
+        <span class="formula-idx">#1</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 4 + 7</span>
+          <span class="formula-quote">«Для чтения ночью при свечах»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 2: 5 + 6 + 7 -->
+      <div class="formula-card">
+        <span class="formula-idx">#2</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 5, 6 + 7</span>
+          <span class="formula-quote">«Если попаду в передрягу на тракте»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 3: 5 + 7 + 8 -->
+      <div class="formula-card">
+        <span class="formula-idx">#3</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 5, 7 + 8</span>
+          <span class="formula-quote">«Подсунуть карге для переговоров»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 4: 3 + 6 -->
+      <div class="formula-card">
+        <span class="formula-idx">#4</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 3 + 6</span>
+          <span class="formula-quote">«Если опыт не удался и обожгло»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 5: 0 + 1 + 4 + 5 -->
+      <div class="formula-card">
+        <span class="formula-idx">#5</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 0, 1, 4 + 5</span>
+          <span class="formula-quote">«Если попаду в разбойничью засаду!»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 6: 1 + 2 + 8 -->
+      <div class="formula-card">
+        <span class="formula-idx">#6</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 1, 2 + 8</span>
+          <span class="formula-quote">«Сортировка фолиантов на полках»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 7: 0 + 2 + 3 -->
+      <div class="formula-card">
+        <span class="formula-idx">#7</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 0, 2 + 3</span>
+          <span class="formula-quote">«Это спасет жизнь при ранении»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 8: 1 + 4 -->
+      <div class="formula-card">
+        <span class="formula-idx">#8</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 1 + 4</span>
+          <span class="formula-quote">«Для клинка наемника»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 9: 0 + 3 -->
+      <div class="formula-card">
+        <span class="formula-idx">#9</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 0 + 3</span>
+          <span class="formula-quote">«Перед обедом в сомнительном месте»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+      <!-- 10: 2 + 6 + 8 -->
+      <div class="formula-card">
+        <span class="formula-idx">#10</span>
+        <div class="formula-top">
+          <span class="formula-badge">№ 2, 6 + 8</span>
+          <span class="formula-quote">«Особое для мерзавца Герберта!»</span>
+        </div>
+        <div class="formula-pencil-area">
+          <div class="pencil-lbl">Выясненный эффект:</div>
+          <div class="pencil-line"></div>
+          <div class="pencil-line"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="handout-footer">
+      <span>Раздатка для игроков • Выдается после спасения Скряба или при знании драконьего языка</span>
+      <span>1 лист А4 • Черно-белая печать (эко-режим)</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Приключение: Обычный день с гоблинами (Версия для печати А4)</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 6mm 7mm 6mm 7mm;
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+    color: #111111;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PT Sans", Helvetica, Arial, sans-serif;
+    font-size: 7.3pt;
+    line-height: 1.22;
+  }
+  .page {
+    width: 100%;
+    height: 284mm;
+    max-height: 284mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .p-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.2px solid #222222;
+    padding-bottom: 2px;
+    font-family: "Cinzel", "PT Serif Caption", Georgia, serif;
+    font-size: 7.2pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #444444;
+    flex-shrink: 0;
+  }
+  .p-head .doc-title { font-weight: 900; color: #111111; }
+  .p-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.75px solid #666666;
+    padding-top: 2px;
+    font-size: 6.8pt;
+    color: #555555;
+    flex-shrink: 0;
+  }
+  .p-content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 4px;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  h2.sec-title {
+    font-family: "Cinzel", "PT Serif Caption", Georgia, serif;
+    font-size: 7.6pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    background: #f2f2f2;
+    color: #111111;
+    border: 0.8px solid #222222;
+    padding: 2.5px 6px;
+    border-radius: 2px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h3.loc-title {
+    font-family: "Cinzel", "PT Serif Caption", Georgia, serif;
+    font-size: 7.4pt;
+    font-weight: 800;
+    color: #111111;
+    border-bottom: 0.8px solid #222222;
+    padding-bottom: 1.5px;
+    margin: 0 0 2px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .box {
+    border: 0.75px solid #333333;
+    border-radius: 2px;
+    padding: 3.5px 6px;
+    background: #ffffff;
+  }
+  .map-box {
+    width: 100%;
+    height: 146mm;
+    border: 1px solid #222222;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #ffffff;
+    flex-shrink: 0;
+  }
+  .map-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .poi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px 5px;
+  }
+  .poi-card {
+    border: 0.6px solid #666666;
+    border-radius: 2px;
+    padding: 2.5px 5px;
+    background: #ffffff;
+    font-size: 6.8pt;
+    line-height: 1.2;
+  }
+  .poi-badge {
+    display: inline-block;
+    background: #222222;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 6.8pt;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 12px;
+    margin-right: 2px;
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 7.0pt;
+    line-height: 1.2;
+  }
+  table.data-table th, table.data-table td {
+    border: 0.6px solid #444444;
+    padding: 3px 5px;
+  }
+  table.data-table th {
+    background: #eeeeee;
+    font-weight: 900;
+    font-size: 7.1pt;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #111111;
+  }
+  table.data-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+  .sb {
+    border: 0.8px solid #222222;
+    border-radius: 2px;
+    background: #ffffff;
+    overflow: hidden;
+    font-size: 7.1pt;
+    line-height: 1.22;
+  }
+  .sb-hdr {
+    background: #f2f2f2;
+    border-bottom: 0.8px solid #222222;
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .sb-name { font-family: "Cinzel", Georgia, serif; font-size: 7.8pt; font-weight: 900; color: #111111; }
+  .sb-sub { font-size: 6.4pt; font-style: italic; color: #555555; }
+  .sb-cr { font-weight: 800; font-size: 7.0pt; border: 0.6px solid #444444; padding: 0.5px 3.5px; border-radius: 1px; background: #fff; }
+  .sb-vitals {
+    padding: 1.5px 5px;
+    border-bottom: 0.5px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    background: #fafafa;
+    font-size: 6.8pt;
+  }
+  .sb-stats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    text-align: center;
+    border-bottom: 0.5px solid #ddd;
+    padding: 1.5px 0;
+    font-size: 6.6pt;
+  }
+  .sb-stats div span { display: block; font-weight: 800; font-size: 6.0pt; color: #555; }
+  .sb-body { padding: 2.5px 5px; }
+  .sb-body div { margin-bottom: 1.5px; }
+  .sb-body div:last-child { margin-bottom: 0; }
+  .sb-tag { font-weight: 800; color: #111111; }
+  .badge {
+    border: 0.6px solid #222222;
+    background: #f4f4f4;
+    padding: 0.5px 4px;
+    font-size: 6.3pt;
+    font-weight: 700;
+    border-radius: 1.5px;
+    display: inline-block;
+  }
+  .code-badge {
+    font-family: monospace;
+    font-weight: 900;
+    background: #eee;
+    border: 0.6px solid #444;
+    padding: 0.5px 3px;
+    border-radius: 2px;
+  }
+  .chk {
+    display: inline-block;
+    width: 3.8mm;
+    height: 3.8mm;
+    border: 0.9px solid #111111;
+    border-radius: 1px;
+    vertical-align: middle;
+    margin-right: 4px;
+    background: #ffffff;
+    flex-shrink: 0;
+  }
+  .wave-card {
+    border: 0.65px solid #555555;
+    border-radius: 2px;
+    padding: 4px 6px;
+    background: #ffffff;
+    font-size: 7.1pt;
+    line-height: 1.25;
+  }
+  .wave-badge {
+    display: inline-block;
+    background: #222222;
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 7.1pt;
+    padding: 0.5px 4px;
+    border-radius: 2px;
+    margin-right: 3px;
+  }
+  .dotted-line {
+    border-bottom: 0.75px dashed #888888;
+    height: 18px;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="p-head">
+    <span class="doc-title">🏹 Обычный день с гоблинами</span>
+    <span>D&D 5.5e (2024) / 5e Модуль</span>
+    <span>Стр. 1 из 4</span>
+  </div>
+
+  <div class="p-content">
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1.2px solid #222; padding-bottom:2px;">
+      <div>
+        <h1 class="adv-title">Обычный день с гоблинами</h1>
+        <div class="adv-subtitle">Ваншот для 3–5 героев 2-го ур. • Автор: Ольга Мухина • D&D 5.5e Print Vault Edition</div>
+      </div>
+      <div style="text-align:right;">
+        <span class="badge">ВРЕМЯ: 3–4 ЧАСА</span>
+        <span class="badge">УРОВЕНЬ: 2 УР</span>
+      </div>
+    </div>
+
+    <!-- Read-Aloud Intro -->
+    <div class="callout-read">
+      <strong>Художественное введение:</strong> «Большой лагерь гоблинов у оживленного тракта с утра гудит от возбуждения! Налетчики приволокли трофей — крытую повозку сбежавшего алхимика с 10 сосудами зелий. Но пока глупые гоблины спорят, кто сделает первый глоток, в лагере плетутся темные заговоры: замаскированные шпионы Жентарима готовят диверсии, а в окрестных чащах рыщут зараженные бешенством хищники...»
+    </div>
+
+    <!-- Actions & DC Rules -->
+    <div class="grid-2">
+      <div class="box">
+        <strong style="font-family:'Cinzel', Georgia, serif; font-size:7.2pt;">⚖️ Стоимость действий (1 очко времени):</strong>
+        <div style="font-size:6.8pt; margin-top:1px;">
+          • Переход между зонами = 1 очко. • Обыск / допрос / помощь = 1 очко. • Варка зелья на Пятаке = 1 очко.
+        </div>
+      </div>
+      <div class="box">
+        <strong style="font-family:'Cinzel', Georgia, serif; font-size:7.2pt;">🎯 Ключевые сложности проверок (DC):</strong>
+        <div style="font-size:6.8pt; margin-top:1px;">
+          • Откопать Пичо: <em>Сл 10</em> • Точило: <em>Сл 12</em> • Тайник повозки: <em>Сл 13</em> • Капкан Скряба: <em>Сл 13</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- Timeline Tracker -->
+    <div class="timeline-container">
+      <div class="tl-hdr">
+        <span>⏱ ТРЕКЕР ВРЕМЕНИ ЛАГЕРЯ (20 ОЧКОВ) — ОТМЕЧАЙТЕ КАРАНДАШОМ</span>
+        <span style="font-weight:normal; font-size:6.6pt;">Каждое действие отряда тратит 1 очко</span>
+      </div>
+      <div class="tl-row">
+        <div class="tl-phase">УТРО (1–5)</div>
+        <div class="tl-boxes">
+          <span class="tl-check"><span class="chk"></span> 1</span>
+          <span class="tl-check"><span class="chk"></span> 2</span>
+          <span class="tl-check"><span class="chk"></span> 3</span>
+          <span class="tl-check"><span class="chk"></span> 4</span>
+          <span class="tl-check"><span class="chk"></span> <strong>5 [!]</strong></span>
+          <div class="tl-event"><strong>5 ОЧКОВ: ДИВЕРСИЯ В КУЗНЕ!</strong> Лопнула ось точила, камень летит в лоб шаману Снакмонгеру!</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-phase">ДЕНЬ (6–10)</div>
+        <div class="tl-boxes">
+          <span class="tl-check"><span class="chk"></span> 6</span>
+          <span class="tl-check"><span class="chk"></span> 7</span>
+          <span class="tl-check"><span class="chk"></span> 8</span>
+          <span class="tl-check"><span class="chk"></span> 9</span>
+          <span class="tl-check"><span class="chk"></span> <strong>10 [!]</strong></span>
+          <div class="tl-event"><strong>10 ОЧКОВ: ДИВЕРСИЯ В СТОЛОВОЙ!</strong> Обед отравлен ядом! В погребе 3 бешеные крысы! Сбежали 2 волка!</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-phase">ВЕЧЕР (11–15)</div>
+        <div class="tl-boxes">
+          <span class="tl-check"><span class="chk"></span> 11</span>
+          <span class="tl-check"><span class="chk"></span> 12</span>
+          <span class="tl-check"><span class="chk"></span> 13</span>
+          <span class="tl-check"><span class="chk"></span> 14</span>
+          <span class="tl-check"><span class="chk"></span> <strong>15 [!]</strong></span>
+          <div class="tl-event"><strong>15 ОЧКОВ: ВЫСТРЕЛ В ЗАТЫЛОК!</strong> Шпион Жентарима стреляет из лука в шамана через щель в шатре!</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-phase">НОЧЬ (16–20)</div>
+        <div class="tl-boxes">
+          <span class="tl-check"><span class="chk"></span> 16</span>
+          <span class="tl-check"><span class="chk"></span> 17</span>
+          <span class="tl-check"><span class="chk"></span> 18</span>
+          <span class="tl-check"><span class="chk"></span> 19</span>
+          <span class="tl-check"><span class="chk"></span> <strong>20 [ШТУРМ]</strong></span>
+          <div class="tl-event"><strong>20 ОЧКОВ: НОЧНОЙ ШТУРМ!</strong> Волны бешеных волков, кабанов и гигантский бурый медведь-босс!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Camp Events Table (d12) -->
+    <div>
+      <h2 class="sec-title"><span>🎲 Жизнь лагеря и случайные события (к12)</span> <span style="font-weight:normal; font-size:6.6pt;">Бросайте при переходах между зонами</span></h2>
+      <table class="adv-tbl">
+        <thead>
+          <tr>
+            <th style="width:7%;" class="center">к12</th>
+            <th style="width:31%;">Событие в лагере</th>
+            <th style="width:62%;">Игровая механика и последствия</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><strong>1</strong></td>
+            <td><strong>«Они убили Скирка!»</strong></td>
+            <td>Несут носилки со Скирком. Все воют. Скирк садится, чихает и требует выпить.</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>2</strong></td>
+            <td><strong>Гоблинский шулер</strong></td>
+            <td>Игра под черепами крыс. Проверка <em>Внимательности Сл 12</em> вскрывает ловкача (+3 мм).</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>3</strong></td>
+            <td><strong>Стрела в пятку</strong></td>
+            <td>Часовой роняет лук. Герой проходит <em>спас Ловкости Сл 11</em> или 1к4 колющего урона.</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>4</strong></td>
+            <td><strong>Борьба за тухлую рыбу</strong></td>
+            <td>Два гоблина катаются в грязи. Можно сделать ставку (3 мм, выигрыш 2:1 при успехе).</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>5</strong></td>
+            <td><strong>Дурной глаз шамана</strong></td>
+            <td>Прилетает сушеная лягушка. <em>Спас Мудрости Сл 10</em> или помеха на след. атаку.</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>6</strong></td>
+            <td><strong>Подозрительный верзила</strong></td>
+            <td>Фигура в плаще пахнет лавандовым мылом (замаскированный диверсант Жентарима).</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>7</strong></td>
+            <td><strong>Бешеная курица</strong></td>
+            <td>Ощипанная курица с пеной у клюва яростно клюет сапог персонажа (намек на бешенство).</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>8</strong></td>
+            <td><strong>Кража из кармана</strong></td>
+            <td>Гоблиненок режет кошель. <em>Пасс. Вним. 12</em> ловит воришку за ухо (у него камешек).</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>9</strong></td>
+            <td><strong>Байки у костра</strong></td>
+            <td>Старый гоблин: <em>«Скряб ушел на вырубку с умной книжкой и до сих пор не вернулся...»</em></td>
+          </tr>
+          <tr>
+            <td class="center"><strong>10</strong></td>
+            <td><strong>Взрыв самопала</strong></td>
+            <td>В кузнице с оглушительным грохотом рвет мушкет. Завеса серого дыма на 1 раунд.</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>11</strong></td>
+            <td><strong>Марш на горшках</strong></td>
+            <td>Пьяный наряд гоблинов стучит поварешками в котлы. Скрытность временно невозможна.</td>
+          </tr>
+          <tr>
+            <td class="center"><strong>12</strong></td>
+            <td><strong>Гоблинская свалка</strong></td>
+            <td>Конкурс ныряния в помойку. Приз — <em>Игральная кость шарлатана</em> (всегда 6).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DM Guidance Callout -->
+    <div style="font-size:6.8pt; background:#f9f9f9; border:0.6px solid #ccc; padding:3px 6px; border-radius:2px;">
+      💡 <strong>Совет Мастеру:</strong> Герои свободно исследуют зоны, но каждое действие двигает трекер времени на 1 очко. При 5, 10, 15 и 20 очках немедленно разыгрывайте диверсии Жентарима!
+    </div>
+
+    <!-- 4 Resident NPCs Grid: Loc 1, 2, 3, 4 (Filling 95% of Page 1!) -->
+    <h2 class="sec-title"><span>👥 Ключевые обитатели и происшествия (Локации 1–4)</span></h2>
+    <div class="grid-2">
+      <!-- Loc 1 -->
+      <div class="box">
+        <h3 class="loc-title"><span>🚪 Лок. 1: Пичо в яме</span> <span class="badge">Вход</span></h3>
+        <div style="font-size:6.7pt; margin-bottom:2px; line-height:1.24;">
+          Часовой закопан по пояс за сон (<em>Атлетика Сл 10</em>). <strong>Улики:</strong> видел двух «гоблинов» с запахом лаванды; Скряб с книгой пошел на вырубку.
+        </div>
+        <div class="sb">
+          <div class="sb-hdr"><span>Пичо (Часовой)</span> <span class="sb-cr">ОП 1/4</span></div>
+          <div class="sb-vitals"><span>КД: 15</span> <span>•</span> <span>HP: 7 (2к6)</span> <span>•</span> <span>Скор: 30 (0)</span></div>
+          <div class="sb-stats"><div><span>СИЛ</span>8</div><div><span>ЛОВ</span>14</div><div><span>ТЕЛ</span>10</div><div><span>ИНТ</span>10</div><div><span>МУД</span>8</div><div><span>ХАР</span>10</div></div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Скрыт +6.</span> Ловкий побег (бонусн. Отход/Засада).</div>
+            <div><span class="sb-tag">Атаки:</span> Скимитар +4 (1к6+2 руб), Короткий лук +4 (1к6+2 кол).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loc 2 -->
+      <div class="box">
+        <h3 class="loc-title"><span>🍄 Лок. 2: Снакмонгер</span> <span class="badge">Шатер</span></h3>
+        <div style="font-size:6.7pt; margin-bottom:2px; line-height:1.24;">
+          Шишка от точила. <strong>Тайник:</strong> кукла с 3 ртами. <strong>[!] В 15 очков:</strong> выстрел шпиона в затылок шаману через полог шатра!
+        </div>
+        <div class="sb">
+          <div class="sb-hdr"><span>Снакмонгер (Шаман)</span> <span class="sb-cr">ОП 1/2</span></div>
+          <div class="sb-vitals"><span>КД: 12</span> <span>•</span> <span>HP: 7 (2к6)</span> <span>•</span> <span>Скор: 30 фт</span></div>
+          <div class="sb-stats"><div><span>СИЛ</span>8</div><div><span>ЛОВ</span>13</div><div><span>ТЕЛ</span>10</div><div><span>ИНТ</span>10</div><div><span>МУД</span>15</div><div><span>ХАР</span>8</div></div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Друид (Сл 12).</span> <strong>Малое восстановление (лечит бешенство!).</strong></div>
+            <div><span class="sb-tag">Атаки:</span> Боевой посох +4 (1к8+2 дроб), Огонь +4 (1к8).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loc 3 -->
+      <div class="box">
+        <h3 class="loc-title"><span>🔨 Лок. 3: Стюслюш</span> <span class="badge">Кузница</span></h3>
+        <div style="font-size:6.7pt; margin-bottom:2px; line-height:1.24;">
+          Пропал молот +1. <strong>Улика:</strong> точило подпилено пилой! <strong>Тайник:</strong> под наковальней тяжелый короткий меч (+1 кузнецу).
+        </div>
+        <div class="sb">
+          <div class="sb-hdr"><span>Стюслюш (Кузнец)</span> <span class="sb-cr">ОП 1</span></div>
+          <div class="sb-vitals"><span>КД: 15 (кольчуга)</span> <span>•</span> <span>HP: 27 (6к6+6)</span> <span>•</span> <span>Скор: 30</span></div>
+          <div class="sb-stats"><div><span>СИЛ</span>14</div><div><span>ЛОВ</span>14</div><div><span>ТЕЛ</span>12</div><div><span>ИНТ</span>10</div><div><span>МУД</span>8</div><div><span>ХАР</span>10</div></div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Железный хват:</span> Мультиатака (2 удара). Меч +5 (1к6+3 руб).</div>
+            <div><span class="sb-tag">Копье:</span> 30/120 фт, +4 к поп., урон 5 (1к6+2 кол).</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loc 4 -->
+      <div class="box">
+        <h3 class="loc-title"><span>🍲 Лок. 4: Стики</span> <span class="badge">Столовая</span></h3>
+        <div style="font-size:6.7pt; margin-bottom:2px; line-height:1.24;">
+          Гороховый эликсир (+2к4 HP). <strong>[!] В 10 очков:</strong> чан отравлен Жентаримом! В погребе сидят 3 бешеные гигантские крысы.
+        </div>
+        <div class="sb">
+          <div class="sb-hdr"><span>Стики (Повар)</span> <span class="sb-cr">ОП 1/4</span></div>
+          <div class="sb-vitals"><span>КД: 15 (щит)</span> <span>•</span> <span>HP: 14 (4к6)</span> <span>•</span> <span>Скор: 30</span></div>
+          <div class="sb-stats"><div><span>СИЛ</span>8</div><div><span>ЛОВ</span>14</div><div><span>ТЕЛ</span>10</div><div><span>ИНТ</span>10</div><div><span>МУД</span>8</div><div><span>ХАР</span>8</div></div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Носитель бешенства:</span> Тесак +4 (1к6+2 руб).</div>
+            <div><span class="sb-tag">Укус:</span> +4, 4 (1к4+2) + спас ТЕЛ Сл 10 или бешенство!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="p-foot">
+    <span>Обычный день с гоблинами • Вводная часть</span>
+    <span>D&D 5.5e Print Vault Edition</span>
+    <span>Стр. 1 из 4</span>
+  </div>
+</div>
+
+<div class="page">
+  <div class="p-head">
+    <span class="doc-title">🗺 План лагеря гоблинов [36x27] & Локация 5</span>
+    <span>D&D 5.5e (2024) / 5e Модуль</span>
+    <span>Стр. 2 из 4</span>
+  </div>
+
+  <div class="p-content">
+    <!-- Battlemap (Clean vector line art, fixed XML without &rarr; or &nbsp;) -->
+    <div class="map-box">
+      <img src="file:///Users/specki/project/dnd/JustAnotherDayWithGoblins/_Ассеты/Карта%20лагеря%20гоблинов%20ЧБ%20[36x27].png" alt="Тактическая карта лагеря гоблинов">
+    </div>
+
+    <!-- 7 POI Cards -->
+    <div>
+      <h2 class="sec-title"><span>📍 7 Ключевых ориентиров тактической карты лагеря</span> <span style="font-weight:normal; font-size:6.5pt;">1 клетка = 5 футов • △ = палатка • ◉ = костёр</span></h2>
+      <div class="poi-grid" style="margin-top:2px;">
+        <div class="poi-card">
+          <strong><span class="poi-badge">1</span> Вход в лагерь:</strong> Дозорная вышка из сухих бревен и кривой частокол. Часовой Пичо закопан по пояс в землю.
+        </div>
+        <div class="poi-card">
+          <strong><span class="poi-badge">2</span> Шатер Снакмонгера:</strong> Завешен паутиной, пахнет жабами. В 15 очков выстрел шпиона в затылок! Тайник: кукла.
+        </div>
+        <div class="poi-card">
+          <strong><span class="poi-badge">3</span> Кузница Стюслюша у ручья:</strong> Наковальня из надгробия, водяное колесо. В 5 очков лопается точило! Пропал молот +1.
+        </div>
+        <div class="poi-card">
+          <strong><span class="poi-badge">4</span> Столовая и погреб Стики:</strong> Огромный чан варева. В 10 очков обед отравлен Жентаримом! В погребе 3 бешеные крысы.
+        </div>
+        <div class="poi-card">
+          <strong><span class="poi-badge">5</span> Пятак (Центральная площадь):</strong> Трофейная повозка алхимика с 10 сосудами. Гноггин зазывает дегустаторов. В днище тайник №9!
+        </div>
+        <div class="poi-card">
+          <strong><span class="poi-badge">6</span> Псарня Брыся и вожак:</strong> Волчьи ямы с кольями, шатер вожака лагеря. В ямы подброшен жгучий перец. Ворг Кроха взбешен!
+        </div>
+        <div class="poi-card" style="grid-column: span 2;">
+          <strong><span class="poi-badge">7</span> Лесная вырубка (Западная тропа):</strong> 15 мин ходьбы на запад. Гоблин-грамотей Скряб застрял в охотничьем капкане с записной книжкой алхимика. В кустах — тайная засада лазутчиков Жентарима!
+        </div>
+      </div>
+    </div>
+
+    <!-- Loc 5: Cart, Gnoggin & Catalyst #9 -->
+    <div class="box">
+      <h3 class="loc-title"><span>🛒 Локация 5: Пятак и трофейная повозка алхимика</span> <span class="badge">Катализатор №9 • Опись и Записная книжка</span></h3>
+      <div class="grid-2" style="margin-top:2px;">
+        <div style="font-size:6.7pt; line-height:1.22;">
+          В центре лагеря толпа зевак окружила захваченную тележку мага-алхимика. В сене лежат 9 открытых сосудов с разноцветными эссенциями (от 0 до 8).<br>
+          • <strong>Секретный тайник:</strong> в двойном днище за поворотным кованым гвоздем спрятан флакон 《9》 — <strong>Универсальный Катализатор</strong> (<em>Внимательность СЛ 13</em>). Он удваивает мощь любого зелья и делает эффект стабильным!<br>
+          • <strong>Зазывала Гноггин:</strong> подбивает гоблинов пить жидкости наугад за 1 медную монету, обещая «вечную славу, силу тролля или рога на лбу».<br>
+          • <strong>Реакция толпы:</strong> если герой пробует состав и преуспевает в спасброске ТЕЛ СЛ 11 — гоблины встречают его восторженным ревом (+1 к соц. проверкам в лагере); при провале — гоблины покатываются со смеху.
+        </div>
+        <!-- Statblock Gnoggin -->
+        <div class="sb">
+          <div class="sb-hdr">
+            <div><span class="sb-name">Гноггин</span> <span class="sb-sub">(Зазывала на Пятаке)</span></div>
+            <span class="sb-cr">ОП 1/4</span>
+          </div>
+          <div class="sb-vitals">
+            <span>КД: 15 (кожа)</span> <span>•</span> <span>HP: 7 (2к6)</span> <span>•</span> <span>Скор: 30 фт</span>
+          </div>
+          <div class="sb-stats">
+            <div><span>СИЛ</span>8 (-1)</div> <div><span>ЛОВ</span>14 (+2)</div> <div><span>ТЕЛ</span>10 (+0)</div>
+            <div><span>ИНТ</span>10 (+0)</div> <div><span>МУД</span>8 (-1)</div> <div><span>ХАР</span>10 (+0)</div>
+          </div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Обман +2, Скрытность +6.</span> Пасс. Внимание 9. Темное зрение 60 фт.</div>
+            <div><span class="sb-tag">Ловкий побег:</span> Бонусным действием совершает Отход или Засаду.</div>
+            <div><span class="sb-tag">Скрытая атака (1/ход):</span> +7 (2к6) урона оружием при преимуществе.</div>
+            <div><span class="sb-tag">Скимитар:</span> Рукопашная +4 к поп., досяг. 5 фт. Попадание: 5 (1к6+2) руб.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tactical Movement & Camp Rules Box -->
+    <div style="font-size:6.7pt; background:#f9f9f9; border:0.75px solid #444444; padding:3px 6px; border-radius:2px; line-height:1.22;">
+      <div style="font-weight:800; text-transform:uppercase; font-size:6.8pt; margin-bottom:1px; display:flex; justify-content:space-between;">
+        <span>⚡ Тактические правила перемещения и скрытности в лагере</span>
+        <span>Раздатки: №07 (Книжка), №08 (Опись), №09 (Карта)</span>
+      </div>
+      • <strong>Перемещение:</strong> Соседние зоны (1→2, 3→4, 4→5) — свободный переход. Переход через весь лагерь (1→6) или поход на Вырубку №7 тратит <strong>1 очко времени</strong> лагеря.<br>
+      • <strong>Скрытность и бдительность:</strong> Базовая СЛ Скрытности против часовых — <strong>9</strong> (пасс. Внимание). В сумерках или при дымовой завесе броски скрытности совершаются с преимуществом.<br>
+      • <strong>Шум и тревога:</strong> Громкий бой или взрыв привлекает 1к4+2 гоблинов за 2 раунда, если не устранить свидетелей мгновенно. <em>Полная таблица 10 алхимических рецептов — на стр. 3.</em>
+    </div>
+
+  </div>
+
+  <div class="p-foot">
+    <span>Обычный день с гоблинами • Тактический план лагеря [36x27]</span>
+    <span>D&D 5.5e Print Vault Edition</span>
+    <span>Стр. 2 из 4</span>
+  </div>
+</div>
+
+<div class="page">
+  <div class="p-head">
+    <span class="doc-title">⚗️ Алхимический кодекс & Локации 6–7</span>
+    <span>D&D 5.5e (2024) / 5e Модуль</span>
+    <span>Стр. 3 из 4</span>
+  </div>
+
+  <div class="p-content">
+    <!-- SECTION 1: 10 RECIPES TABLE -->
+    <div>
+      <h2 class="sec-title">
+        <span>⚗️ 10 Рецептов гоблинской алхимии (Трофейный гримуар)</span>
+        <span style="font-weight:normal; font-size:6.6pt;">Основы 0–8 • Катализатор №9 удваивает мощь и стабилизирует</span>
+      </h2>
+      <table class="data-table" style="margin-top:2px;">
+        <thead>
+          <tr>
+            <th style="width:11%; text-align:center;">Колбы</th>
+            <th style="width:21%;">Название зелья</th>
+            <th style="width:34%;">Базовый эффект (Смесь 2 колб)</th>
+            <th style="width:34%;">Усиленный эффект с Катализатором №9</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">0 + 3</span></td>
+            <td><strong>Зелье чистоты</strong></td>
+            <td>Мгновенно снимает отравление, тошноту и 1 болезнь.</td>
+            <td>Полный иммунитет к яду и бешенству на 24 часа.</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">1 + 4</span></td>
+            <td><strong>Масло пламени</strong></td>
+            <td>Оружие наносит дополнительно +1к4 огня на 1 минуту.</td>
+            <td>Оружие горит ярким пламенем: +1к8 огня на 1 час.</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">2 + 5</span></td>
+            <td><strong>Пыль каменной кожи</strong></td>
+            <td>Дает +1 к КД цели на 10 минут (кожа каменеет).</td>
+            <td>КД становится 16 + сопротивление дробящему, колющему, рубящему.</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">3 + 6</span></td>
+            <td><strong>Дымная взвесь</strong></td>
+            <td>Сфера густого дыма радиусом 20 фт (тяжелая завеса) на 1 мин.</td>
+            <td>Слезоточивый газ: ослепление и 1к6 яда в начале каждого хода.</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">4 + 7</span></td>
+            <td><strong>Зелье прыгучести</strong></td>
+            <td>Утраивает дальность прыжков персонажа на 10 минут.</td>
+            <td>Прыжок до 40 фт без разбега + плавное падение как перо.</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">5 + 8</span></td>
+            <td><strong>Кислотный плевок</strong></td>
+            <td>Дистанция 30 фт, наносит 2к6 урона кислотой по цели.</td>
+            <td>Наносит 4к6 кислоты + разъедает немагический доспех (-2 к КД).</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">1 + 6</span></td>
+            <td><strong>Настойка ярости</strong></td>
+            <td>+2 к урону рукопашных атак, но помеха на спасброски защиты.</td>
+            <td>Полноценная Ярость варвара на 1 мин (+2 урон, сопр. урону оружия).</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">2 + 7</span></td>
+            <td><strong>Эликсир кошачьих чувств</strong></td>
+            <td>Темное зрение 120 фт и преимущество на Внимательность 1 час.</td>
+            <td>Преимущество на броски Инициативы и спасброски Ловкости.</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">0 + 8</span></td>
+            <td><strong>Гнилостная жижа</strong></td>
+            <td>Смазка на оружие: спасбросок ТЕЛ СЛ 12 или 1к6 урона ядом.</td>
+            <td>2к8 урона ядом + состояние «Отравлен» на 1 час при провале.</td>
+          </tr>
+          <tr>
+            <td style="text-align:center;"><span class="code-badge">3 + 7</span></td>
+            <td><strong>Эссенция ложной смерти</strong></td>
+            <td>Персонаж впадает в кому на 1 час, кажется мертвым.</td>
+            <td>Заклинание <em>Притворная смерть</em> + регенерация 1 хита в минуту.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECTION 2: WILD ALCHEMY TABLE & MIXING RULES -->
+    <div class="grid-2">
+      <div class="box">
+        <h3 class="loc-title"><span>🧪 Правила варки, дегустации и Катализатора</span> <span class="badge">Варка в походе</span></h3>
+        <div style="font-size:6.8pt; line-height:1.24;">
+          • <strong>Процесс варки:</strong> Смешивание 2 колб занимает 1 действие в бою или 1 мин в лагере. Проверка <em>Магии / Инструментов алхимика СЛ 11</em>.<br>
+          • <strong>Осечка при смешивании:</strong> При провале проверки или смешивании несовместимых колб наугад бросьте <strong>1к8 по таблице осечек</strong>.<br>
+          • <strong>Катализатор №9 (Тайник в тележке):</strong> Добавление катализатора полностью устраняет риск осечки и делает зелье высшим и стабильным.<br>
+          • <strong>Записная книжка алхимика (Раздатка №07):</strong> Находится у Скряба (Лок. 7). Содержит эти 10 формул на драконьем языке (<em>Магия СЛ 11</em>).
+        </div>
+      </div>
+      <div class="box">
+        <h3 class="loc-title"><span>💥 Таблица дикой алхимии (1к8 при осечке)</span> <span class="badge">d8 Осечка</span></h3>
+        <div style="font-size:6.7pt; line-height:1.22;">
+          <strong>1: Взрыв в лицо!</strong> 2к6 урона огнем в радиусе 5 фт (ЛОВ СЛ 12 половина), копоть.<br>
+          <strong>2: Вонючее облако:</strong> ТЕЛ СЛ 11 или тошнота (потеря действия в след. ход).<br>
+          <strong>3: Фиолетовая кожа:</strong> Волосы и кожа светятся синим 24ч (помеха Скрытности).<br>
+          <strong>4: Безумное кваканье:</strong> Персонаж 10 минут может только громко квакать.<br>
+          <strong>5: Скользкие руки:</strong> Роняет всё оружие; помеха на проверки Ловкости рук 1 час.<br>
+          <strong>6: Вспышка скорости:</strong> Скорость ходьбы увеличивается на +10 фт на 10 минут.<br>
+          <strong>7: Всплеск жизни:</strong> Цель неожиданно восстанавливает 2к4+2 хита.<br>
+          <strong>8: Супер-концентрат:</strong> Случайный успех! Эффект зелья удваивается без осечки!
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: LOCATION 6 - KENNEL & WORG KROHA -->
+    <div class="box">
+      <h3 class="loc-title"><span>🐺 Локация 6: Псарня Брыся, Ворг Кроха и Вожак лагеря</span> <span class="badge">ОП 1 & ОП 1/2</span></h3>
+      <div class="grid-2">
+        <div style="font-size:6.8pt; line-height:1.24;">
+          • <strong>Обстановка:</strong> Глубокие ямы с кольями, бешеный лай. Псарь Брысь в панике бегает по краю ям.<br>
+          • <strong>Диверсия Жентарима:</strong> В ямы подброшены <strong>3 мешочка со жгучим кайенским перцем</strong> (<em>Расследование СЛ 11</em>). Из-за перца волки ослепли от рези и взбесились. Если вытащить мешочки — стая утихает.<br>
+          • <strong>Ворг Кроха:</strong> Любимый скакун вожака. Здоров, но в бешенстве от запаха. Если убрать перец и бросить мясо (<em>Уход за животными СЛ 8</em>), Кроха признает героя и бьется за отряд во время ночного штурма!<br>
+          • <strong>Болезнь «Лесное бешенство»:</strong> Спасбросок <strong>ТЕЛ СЛ 10 сразу при укусе</strong> зараженного зверя. Инкубация 1к4 ч. Симптомы: пена у рта, слепая агрессия, атаки с преимуществом по ближайшей цели. Снимается <strong>Зельем чистоты (0+3)</strong>.
+        </div>
+        <!-- Statblocks Kroha & Boss -->
+        <div style="display:flex; flex-direction:column; gap:3px;">
+          <div class="sb">
+            <div class="sb-hdr">
+              <div><span class="sb-name">Кроха (Ворг вожака)</span></div>
+              <span class="sb-cr">ОП 1/2</span>
+            </div>
+            <div class="sb-vitals">
+              <span>КД: 13 (естеств.)</span> <span>•</span> <span>HP: 26 (4к10+4)</span> <span>•</span> <span>Скор: 50 фт</span>
+            </div>
+            <div class="sb-body">
+              <div><span class="sb-tag">Острый нюх и слух:</span> Преимущество на проверки Внимания (Пасс. 14).</div>
+              <div><span class="sb-tag">Укус:</span> +5 к поп., 10 (2к6+3) кол. Цель: спасбросок СИЛ СЛ 13 или сбита с ног.</div>
+            </div>
+          </div>
+          <div class="sb">
+            <div class="sb-hdr">
+              <div><span class="sb-name">Вожак лагеря</span> <span class="sb-sub">(Гоблин-босс)</span></div>
+              <span class="sb-cr">ОП 1</span>
+            </div>
+            <div class="sb-vitals">
+              <span>КД: 17 (кольчуга, щит)</span> <span>•</span> <span>HP: 21 (6к6)</span> <span>•</span> <span>Скор: 30 фт</span>
+            </div>
+            <div class="sb-body">
+              <div><span class="sb-tag">Перенаправление атаки (Реакция):</span> Меняется местами с гоблином в 5 фт.</div>
+              <div><span class="sb-tag">Мультиатака:</span> 2 атаки скимитаром (+4 к поп., 5 (1к6+2) руб., 2-я с помехой).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: LOCATION 7 - FOREST CLEARING & SCRYAB -->
+    <div class="box">
+      <h3 class="loc-title"><span>🌲 Локация 7: Лесная вырубка, Скряб и Засада Жентарима</span> <span class="badge">15 мин на запад</span></h3>
+      <div class="grid-2">
+        <div style="font-size:6.8pt; line-height:1.24;">
+          • <strong>Обстановка:</strong> Заросшая вырубка в 15 мин по западной тропе (тратит 1 очко времени). Скряб — единственный грамотный гоблин — попал ногой в охотничий капкан.<br>
+          • <strong>Освобождение Скряба:</strong> Снять капкан — <em>Инструменты вора СЛ 11</em>; Разжать силой — <em>Атлетика СЛ 13</em>. При освобождении отдает <strong>Записную книжку алхимика</strong> (Раздатка №07).<br>
+          • <strong>Засада Жентарима:</strong> Из кустов нападают Шпион и Бандит с украденным магическим молотом Стюслюша (+1 к попаданию и урону).<br>
+          • <strong>Улики Жентарима:</strong> При обыске шпиона находится карта лагеря с пометками диверсий и приказ Жентарима: натравить бешеных зверей в полночь (20 очков) и вывезти повозку.
+        </div>
+        <!-- Statblocks Spy & Bandit -->
+        <div style="display:flex; flex-direction:column; gap:3px;">
+          <div class="sb">
+            <div class="sb-hdr">
+              <div><span class="sb-name">Шпион Жентарима</span> <span class="sb-sub">(Координатор)</span></div>
+              <span class="sb-cr">ОП 1</span>
+            </div>
+            <div class="sb-vitals">
+              <span>КД: 13 (кожа)</span> <span>•</span> <span>HP: 27 (6к8)</span> <span>•</span> <span>Скор: 30 фт</span>
+            </div>
+            <div class="sb-body">
+              <div><span class="sb-tag">Навыки:</span> Обман +5, Внимание +6 (Пасс. 16), Скрытность +4. Хитрое действие.</div>
+              <div><span class="sb-tag">Скрытая атака (1/ход):</span> +7 (2к6) урона оружием при преимуществе.</div>
+              <div><span class="sb-tag">Мультиатака:</span> 2 атаки коротким мечом (+4, 5 (1к6+2) кол.) или луком (80/320).</div>
+            </div>
+          </div>
+          <div class="sb">
+            <div class="sb-hdr">
+              <div><span class="sb-name">Бандит Жентарима</span> <span class="sb-sub">(С молотом Стюслюша)</span></div>
+              <span class="sb-cr">ОП 1/8</span>
+            </div>
+            <div class="sb-vitals">
+              <span>КД: 12 (кожа)</span> <span>•</span> <span>HP: 11 (2к8+2)</span> <span>•</span> <span>Скор: 30 фт</span>
+            </div>
+            <div class="sb-body">
+              <div><span class="sb-tag">Молот Стюслюша +1:</span> Рукопашная +4 к поп., урон 6 (1к8+2) дробящий.</div>
+              <div><span class="sb-tag">Тяжелый арбалет:</span> Дистанция 100/400 фт, +3 к поп., урон 5 (1к8+1) колющий.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM BAR: TRANSITION TO NIGHT CLIMAX -->
+    <div style="font-size:6.8pt; background:#f9f9f9; border:0.75px solid #444444; padding:3px 6px; border-radius:2px; line-height:1.22;">
+      🌙 <strong>Переход к финалу:</strong> Когда счетчик времени достигает <strong>20 очков</strong>, наступает глубокая ночь. Начинается <strong>Ночная битва за лагерь</strong> (Стр. 4). Если герои спасли Скряба, сварили зелья и успокоили ворга Кроху, отряд встречает штурм во всеоружии!
+    </div>
+
+  </div>
+
+  <div class="p-foot">
+    <span>Обычный день с гоблинами • Алхимический кодекс и Локации 6–7</span>
+    <span>D&D 5.5e Print Vault Edition</span>
+    <span>Стр. 3 из 4</span>
+  </div>
+</div>
+
+<div class="page">
+  <div class="p-head">
+    <span class="doc-title">🌙 Финал: Ночной штурм, Бестиарий & Итоги</span>
+    <span>D&D 5.5e (2024) / 5e Модуль</span>
+    <span>Стр. 4 из 4</span>
+  </div>
+
+  <div class="p-content">
+    <!-- SECTION 1: NIGHT CLIMAX ASSAULT WAVES -->
+    <div class="box">
+      <h2 class="sec-title">
+        <span>🌙 Кульминация: Ночная битва за лагерь (20 очков времени)</span>
+        <span style="font-weight:normal; font-size:6.6pt;">3 тактические волны штурма бешеных зверей</span>
+      </h2>
+      <div style="font-size:7.1pt; line-height:1.24; margin: 3px 0 4px 0;">
+        Когда счетчик времени достигает <strong>20 очков</strong>, наступает полночь. Из лесной тьмы на частокол накатывают волны диких зверей, зараженных бешенством. Звери слепы к боли, их пасти покрыты красной пеной.
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:6px;">
+        <div class="wave-card">
+          <span class="wave-badge">Волна 1</span> <strong>Авангард волков:</strong><br>
+          <strong>4 бешеных волка</strong> атакуют Южные ворота (Лок. 1) и пролом у кузницы (Лок. 3).<br>
+          • <em>Фактор Пичо:</em> если часовой спасен, он вовремя бьет в набат (отряд не застигнут врасплох и успевает занять боевые позиции).
+        </div>
+        <div class="wave-card">
+          <span class="wave-badge">Волна 2</span> <strong>Таран частокола:</strong><br>
+          <strong>2 бешеных кабана</strong> на полном ходу таранят бревенчатую стену псарни (Лок. 6).<br>
+          • <em>Фактор Крохи:</em> если ворг успокоен и накормлен, он вступает в схватку на стороне героев и сбивает одного кабана с ног!
+        </div>
+        <div class="wave-card">
+          <span class="wave-badge">Волна 3</span> <strong>Медвежий прорыв (Босс):</strong><br>
+          Огромный <strong>бешеный бурый медведь</strong> сносит баррикаду и рвется на Пятак (Лок. 5).<br>
+          • <em>Повозка:</em> если медведя не связать боем за 2 раунда, он опрокидывает бочки с алхимией (взрыв 3к6 огня в радиусе 15 фт)!
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: TACTICAL BESTIARY (4 STATBLOCKS) -->
+    <div>
+      <h2 class="sec-title">
+        <span>🐺 Бестиарий угроз ночной битвы</span>
+        <span style="font-weight:normal; font-size:6.6pt;">Тактические блоки монстров D&D 5.5e (2024) / 5e</span>
+      </h2>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-top:3px;">
+        <!-- Statblock 1: Boss Bear -->
+        <div class="sb">
+          <div class="sb-hdr">
+            <div><span class="sb-name">Бешеный бурый медведь</span> <span class="sb-sub">(Босс штурма)</span></div>
+            <span class="sb-cr">ОП 1</span>
+          </div>
+          <div class="sb-vitals">
+            <span>КД: 11 (естеств.)</span> <span>•</span> <span>HP: 34 (4к10+12)</span> <span>•</span> <span>Скор: 40 фт, лазание 30 фт</span>
+          </div>
+          <div class="sb-stats">
+            <div><span>СИЛ</span>19 (+4)</div> <div><span>ЛОВ</span>10 (0)</div> <div><span>ТЕЛ</span>16 (+3)</div>
+            <div><span>ИНТ</span>2 (-4)</div> <div><span>МУД</span>13 (+1)</div> <div><span>ХАР</span>7 (-2)</div>
+          </div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Бешеная ярость:</span> В начале хода спасбросок ТЕЛ СЛ 11. При провале атакует на самый громкий звук; все атаки медведя и по нему совершаются с преимуществом!</div>
+            <div><span class="sb-tag">Мультиатака:</span> Совершает две атаки — укусом и когтями.</div>
+            <div><span class="sb-tag">Укус:</span> +6 к поп., урон 8 (1к8+4) колющий + заражение бешенством (ТЕЛ СЛ 10 сразу).</div>
+            <div><span class="sb-tag">Когти:</span> +6 к поп., урон 11 (2к6+4) рубящий.</div>
+          </div>
+        </div>
+
+        <!-- Statblock 2: Rabid Wolf -->
+        <div class="sb">
+          <div class="sb-hdr">
+            <div><span class="sb-name">Бешеный волк</span> <span class="sb-sub">(4 шт в волне 1)</span></div>
+            <span class="sb-cr">ОП 1/4</span>
+          </div>
+          <div class="sb-vitals">
+            <span>КД: 13 (естеств.)</span> <span>•</span> <span>HP: 11 (2к8+2)</span> <span>•</span> <span>Скор: 40 фт</span>
+          </div>
+          <div class="sb-stats">
+            <div><span>СИЛ</span>12 (+1)</div> <div><span>ЛОВ</span>15 (+2)</div> <div><span>ТЕЛ</span>12 (+1)</div>
+            <div><span>ИНТ</span>3 (-4)</div> <div><span>МУД</span>12 (+1)</div> <div><span>ХАР</span>6 (-2)</div>
+          </div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Тактика стаи:</span> Преимущество на броски атаки, если рядом союзник (5 фт).</div>
+            <div><span class="sb-tag">Бешеная ярость:</span> ТЕЛ СЛ 11 в начале каждого хода или атака в ярости.</div>
+            <div><span class="sb-tag">Укус:</span> Рукопашная +4 к поп., урон 7 (2к4+2) колющий + заражение бешенством (ТЕЛ СЛ 10 сразу). Цель: спасбросок СИЛ СЛ 11 или падает ничком.</div>
+          </div>
+        </div>
+
+        <!-- Statblock 3: Rabid Boar -->
+        <div class="sb">
+          <div class="sb-hdr">
+            <div><span class="sb-name">Бешеный кабан</span> <span class="sb-sub">(2 шт в волне 2)</span></div>
+            <span class="sb-cr">ОП 1/4</span>
+          </div>
+          <div class="sb-vitals">
+            <span>КД: 11 (естеств.)</span> <span>•</span> <span>HP: 11 (2к8+2)</span> <span>•</span> <span>Скор: 40 фт</span>
+          </div>
+          <div class="sb-stats">
+            <div><span>СИЛ</span>13 (+1)</div> <div><span>ЛОВ</span>11 (0)</div> <div><span>ТЕЛ</span>12 (+1)</div>
+            <div><span>ИНТ</span>2 (-4)</div> <div><span>МУД</span>9 (-1)</div> <div><span>ХАР</span>5 (-3)</div>
+          </div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Непреклонность (1/отдых):</span> Урон ≤ 7, снижающий HP до 0, оставляет 1 HP.</div>
+            <div><span class="sb-tag">Таран с разбега:</span> Разбег 20 фт: +3 (1к6) руб. и спасбросок СИЛ СЛ 11 или ничком.</div>
+            <div><span class="sb-tag">Клыки:</span> +3 к поп., урон 4 (1к6+1) рубящий + заражение бешенством (ТЕЛ СЛ 10 сразу).</div>
+          </div>
+        </div>
+
+        <!-- Statblock 4: Swarm of Spiders -->
+        <div class="sb">
+          <div class="sb-hdr">
+            <div><span class="sb-name">Рой пауков</span> <span class="sb-sub">(Шатер Снакмонгера)</span></div>
+            <span class="sb-cr">ОП 1/2</span>
+          </div>
+          <div class="sb-vitals">
+            <span>КД: 12</span> <span>•</span> <span>HP: 22 (5к8)</span> <span>•</span> <span>Скор: 20 фт, лазание 20 фт</span>
+          </div>
+          <div class="sb-stats">
+            <div><span>СИЛ</span>3 (-4)</div> <div><span>ЛОВ</span>13 (+1)</div> <div><span>ТЕЛ</span>10 (0)</div>
+            <div><span>ИНТ</span>1 (-5)</div> <div><span>МУД</span>7 (-2)</div> <div><span>ХАР</span>1 (-5)</div>
+          </div>
+          <div class="sb-body">
+            <div><span class="sb-tag">Сопротивления:</span> Дробящий, колющий, рубящий урон. Иммунитет к 7 состояниям.</div>
+            <div><span class="sb-tag">Укусы:</span> +3 к поп., 10 (4к4) колющий (5 (2к4) при HP ≤ 11) плюс спасбросок ТЕЛ СЛ 10 или 9 (2к8) урона ядом (половина урона при успехе).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TACTICS & INITIATIVE TRACKER BAR (PI RECOMMENDATION ENHANCED) -->
+    <div style="font-size:7.0pt; background:#f4f4f4; border:0.8px solid #222222; padding:3.5px 7px; border-radius:2px; line-height:1.26;">
+      <div style="font-weight:900; text-transform:uppercase; margin-bottom:1px; display:flex; justify-content:space-between;">
+        <span>⚔️ Тактика Мастера и приоритеты целей монстров</span>
+        <span>Трекер инициативы: Волки 14 • Медведь 12 • Кабаны 11</span>
+      </div>
+      • <strong>Порядок волн:</strong> <strong>Раунд 1</strong> — Волна 1 (Волки атакуют часовых и пролом кузни); <strong>Раунд 3</strong> — Волна 2 (Кабаны таранят ворота и частокол псарни); <strong>Раунд 5</strong> — Волна 3 (Медведь фокусит повозку алхимика).<br>
+      • <strong>Поведение при атаке:</strong> Медведь слепо рвется к повозке на запах зелий; волки отрезают пути к отходу; кабаны сносят укрепления. Если лагерь спал: гоблины тратят 1 раунд на подъем.
+    </div>
+
+    <!-- SECTION 3: VP TRACKER & 3 ENDINGS -->
+    <div class="box">
+      <h3 class="loc-title"><span>🏆 Подсчет победных очков и Концовки приключения</span> <span class="badge">Максимум 9 очков</span></h3>
+      <div class="grid-2" style="margin-top:2px;">
+        <!-- Left: VP Checkboxes -->
+        <div style="font-size:7.0pt; line-height:1.26;">
+          <div style="font-weight:800; text-transform:uppercase; font-size:7.0pt; margin-bottom:2px;">Критерии успеха отряда:</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+1</strong> Спасен часовой Пичо из ямы (Лок. 1)</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+1</strong> Предотвращено отравление котла Стики (Лок. 4)</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+1</strong> Найден похищенный молот Стюслюша +1 (Лок. 7)</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+1</strong> Спасен шаман Снакмонгер от пули шпиона (Лок. 2)</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+1</strong> Найден тайник с Катализатором №9 (Лок. 5)</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+1</strong> Спасен Скряб и расшифрованы рецепты (Лок. 7)</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+1</strong> Успокоен ворг Кроха и вылечены волки (Лок. 6)</div>
+          <div style="display:flex; align-items:center; margin-bottom:1.5px;"><span class="chk"></span> <strong>+2</strong> Лагерь успешно защищен от ночного штурма зверей</div>
+          <div style="margin-top:4px; padding-top:3px; border-top:1.2px solid #222; font-weight:900; font-size:7.3pt; display:flex; justify-content:space-between;">
+            <span>ИТОГ СЕССИИ: _______ / 9 очков</span>
+            <span>Награда: _______ ОС  +  _______ зм</span>
+          </div>
+        </div>
+
+        <!-- Right: 3 Endings -->
+        <div style="font-size:6.9pt; line-height:1.24;">
+          <div style="font-weight:800; text-transform:uppercase; font-size:7.0pt; margin-bottom:2px;">Финал истории:</div>
+          <div style="margin-bottom:3px; border-left:2.5px solid #222; padding-left:5px;">
+            <strong>7–9 очков • Триумф клана:</strong> Герои провозглашены верховными хранителями лагеря. Диверсанты Жентарима схвачены, алхимия поставлена на поток. Вожак вручает героям гоблинский тотем удачи и долю богатой добычи!
+          </div>
+          <div style="margin-bottom:3px; border-left:2.5px solid #777; padding-left:5px;">
+            <strong>4–6 очков • Обычный гоблинский день:</strong> Лагерь устоял, хотя пара палаток сгорела, а кузницу засыпало золой. Ночью у костра жарят кабаньи ребрышки, пьют хмельное варево и громко славят отряд.
+          </div>
+          <div style="border-left:2.5px solid #bbb; padding-left:5px;">
+            <strong>0–3 очка • Катастрофа:</strong> Частокол разбит, повозка взлетела на воздух, вожак растерзан зверями. Уцелевшие гоблины разбежались по болотам. Лагерь перестает существовать.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 4: DM NOTES & HANDOUTS CHECKLIST (EXTENDED TO FILL 95-98% OF PAGE) -->
+    <div class="box" style="margin-top:0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:3px;">
+        <span style="font-weight:800; text-transform:uppercase; font-size:7.1pt;">📝 Заметки Мастера & Чеклист раздаток</span>
+        <span style="font-size:6.6pt; color:#333;">
+          <span class="chk" style="width:3.3mm; height:3.3mm; margin-right:2px;"></span> №06 Шпаргалка &nbsp;
+          <span class="chk" style="width:3.3mm; height:3.3mm; margin-right:2px;"></span> №07 Книжка &nbsp;
+          <span class="chk" style="width:3.3mm; height:3.3mm; margin-right:2px;"></span> №08 Опись &nbsp;
+          <span class="chk" style="width:3.3mm; height:3.3mm; margin-right:2px;"></span> №09 Карта
+        </span>
+      </div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+      <div class="dotted-line"></div>
+    </div>
+
+  </div>
+
+  <div class="p-foot">
+    <span>Обычный день с гоблинами • Ночной штурм, Бестиарий & Итоги</span>
+    <span>D&D 5.5e Print Vault Edition</span>
+    <span>Стр. 4 из 4</span>
+  </div>
+</div>
+
+</body>
+</html>
