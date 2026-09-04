@@ -18,3 +18,4 @@ Thumbs.db
 # Temporary / Scratch
 *.tmp
 *.log
+.plugin-repo/
